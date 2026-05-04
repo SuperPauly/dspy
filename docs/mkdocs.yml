@@ -139,6 +139,7 @@ nav:
             - LabeledFewShot: api/optimizers/LabeledFewShot.md
             - MIPROv2: api/optimizers/MIPROv2.md
             - SIMBA: api/optimizers/SIMBA.md
+            - TextualFrequencyOptimizer: api/optimizers/TextualFrequencyOptimizer.md
         - Primitives:
             - Audio: api/primitives/Audio.md
             - Code: api/primitives/Code.md
