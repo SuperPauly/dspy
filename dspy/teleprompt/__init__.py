@@ -1,4 +1,5 @@
 from dspy.teleprompt.avatar_optimizer import AvatarOptimizer
+from dspy.teleprompt.textual_frequency_optimizer import TextualFrequencyOptimizer
 from dspy.teleprompt.bettertogether import BetterTogether
 from dspy.teleprompt.bootstrap import BootstrapFewShot
 from dspy.teleprompt.bootstrap_finetune import BootstrapFinetune
@@ -17,6 +18,7 @@ from dspy.teleprompt.vanilla import LabeledFewShot
 from .gepa.gepa import GEPA
 
 __all__ = [
+    "TextualFrequencyOptimizer",
     "AvatarOptimizer",
     "BetterTogether",
     "BootstrapFewShot",

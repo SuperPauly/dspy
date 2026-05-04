@@ -62,6 +62,26 @@ These optimizers produce optimal instructions for the prompt and, in the case of
 
 8. [**`GEPA`**](../../api/optimizers/GEPA/overview.md): Uses LM's to reflect on the DSPy program's trajectory, to identify what worked, what didn't and propose prompts addressing the gaps. Additionally, GEPA can leverage domain-specific textual feedback to rapidly improve the DSPy program. Detailed tutorials on using GEPA are available at [dspy.GEPA Tutorials](../../tutorials/gepa_ai_program/index.md).
 
+9. [**`TextualFrequencyOptimizer`**](../../api/optimizers/TextualFrequencyOptimizer.md): A zero-shot optimizer that generates semantically intended paraphrases of each predictor's instruction and selects the candidate with the highest geometric-mean unigram frequency (via [`wordfreq`](https://pypi.org/project/wordfreq/)). Because it does not use task labels, it requires no training data. Task performance should still be measured with a DSPy metric after optimizing. Requires `pip install wordfreq`.
+
+    ```python
+    import dspy
+
+    dspy.configure(lm=dspy.LM("openai/gpt-4o-mini"))
+
+    class ClassifySentiment(dspy.Signature):
+        """Classify the sentiment of the text."""
+        text: str = dspy.InputField()
+        sentiment: str = dspy.OutputField()
+
+    program = dspy.Predict(ClassifySentiment)
+
+    optimizer = dspy.TextualFrequencyOptimizer(num_candidates=10, lang="en")
+    optimized_program = optimizer.compile(program)
+
+    print(optimized_program.signature.instructions)
+    ```
+
 ### Automatic Finetuning
 
 This optimizer is used to fine-tune the underlying LLM(s).
